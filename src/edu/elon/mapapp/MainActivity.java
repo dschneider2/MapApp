@@ -32,33 +32,33 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.googlemapfragment)).getMap();
 		mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-		
+
 		setUpMapIfNeeded();
-		
+
 		textView = (TextView) findViewById(R.id.textviewlayout);
 		relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout);
 		whichColorIsShowing = -1;
 	}
-	
+
 	@Override
 	protected void onResume(){
 		super.onResume();
-		
+
 		setUpMapIfNeeded();
 		locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER/*LocationManager.GPS_PROVIDER*/,0,0,locationListener);
 	}
-	
+
 	@Override
 	protected void onPause(){
 		super.onPause();
-		
+
 		locManager.removeUpdates(locationListener);
 	}
-	
+
 	private void setUpMapIfNeeded() {
 	    // Do a null check to confirm that we have not already instantiated the map.
 	    if (mMap == null) {
@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 	        }
 	    }
 	}
-	
+
 	private LocationListener locationListener = new LocationListener(){
 
 		@Override
@@ -79,7 +79,7 @@ public class MainActivity extends Activity {
 			//grab the location
 			double currentLatitude = location.getLatitude();
 			double currentLongitude = location.getLongitude();
-			
+
 			textView.setText("Latitude: " + currentLatitude + "\n" +
 					"Longitude:" + currentLongitude);
 			whichColorIsShowing = (whichColorIsShowing+1) % colors.length;
@@ -92,27 +92,27 @@ public class MainActivity extends Activity {
             .zoom(17)
             .build();     
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cp));
-			
+
 		}
 
 		@Override
 		public void onProviderDisabled(String arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void onProviderEnabled(String arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 	};
 
 

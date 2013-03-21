@@ -15,4 +15,13 @@
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
 
+    <fragment
+        android:id="@+id/googlemapfragment"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textviewlayout"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textviewlayout" />
+
 </RelativeLayout>
